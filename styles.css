@@ -1,0 +1,299 @@
+  :root{
+    --paper: #F3EEE1;
+    --paper-line: #DCD3B8;
+    --ledger-green: #1B3A2F;
+    --ledger-green-dark: #12291F;
+    --ink: #1D2B3A;
+    --brass: #A8823C;
+    --brass-light: #C9A55C;
+    --deposit: #2F6B4F;
+    --withdraw: #8B3A3A;
+    --shadow: 0 20px 50px rgba(18,41,31,0.35);
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin:0;
+    min-height:100vh;
+    background: var(--ledger-green-dark);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,255,255,0.04), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(255,255,255,0.03), transparent 45%);
+    font-family:'Inter', sans-serif;
+    color: var(--ink);
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding: 48px 16px;
+  }
+
+  .book{
+    width: 100%;
+    max-width: 720px;
+    background: var(--paper);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+
+  /* stitched spine */
+  .book::before{
+    content:"";
+    position:absolute;
+    left:0; top:0; bottom:0;
+    width: 22px;
+    background: linear-gradient(90deg, var(--ledger-green), var(--ledger-green-dark));
+  }
+  .book::after{
+    content:"";
+    position:absolute;
+    left: 22px; top:0; bottom:0;
+    width: 1px;
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--brass-light) 0px,
+      var(--brass-light) 6px,
+      transparent 6px,
+      transparent 14px
+    );
+    opacity: 0.7;
+  }
+
+  .book-inner{
+    padding: 44px 40px 40px 56px;
+  }
+
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 18px;
+    margin-bottom: 28px;
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin: 0 0 6px 0;
+  }
+
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight: 600;
+    font-size: 34px;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .acct-no{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: rgba(29,43,58,0.55);
+    text-align:right;
+  }
+
+  .balance-panel{
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+    background: var(--ledger-green);
+    color: var(--paper);
+    padding: 22px 26px;
+    border-radius: 3px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+  }
+
+  .balance-panel .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brass-light);
+  }
+
+  .balance-panel .amount{
+    font-family:'Fraunces', serif;
+    font-size: 40px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .actions{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 34px;
+  }
+
+  .field{
+    display:flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .field label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(29,43,58,0.6);
+  }
+
+  .field .row{
+    display:flex;
+    gap: 8px;
+  }
+
+  input[type="number"]{
+    flex: 1;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 15px;
+    padding: 10px 12px;
+    border: 1.5px solid var(--paper-line);
+    background: #fbf9f2;
+    border-radius: 3px;
+    color: var(--ink);
+    outline: none;
+    min-width: 0;
+  }
+  input[type="number"]:focus{
+    border-color: var(--brass);
+    box-shadow: 0 0 0 3px rgba(168,130,60,0.18);
+  }
+
+  button{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: transform 0.08s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  button:focus-visible{
+    outline: 2px solid var(--brass);
+    outline-offset: 2px;
+  }
+  button:active{ transform: translateY(1px); }
+
+  .btn-deposit{ background: var(--deposit); color: var(--paper); }
+  .btn-deposit:hover{ background: #275c43; }
+
+  .btn-withdraw{ background: var(--withdraw); color: var(--paper); }
+  .btn-withdraw:hover{ background: #732f2f; }
+
+  .status{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    min-height: 18px;
+    margin-top: -18px;
+    margin-bottom: 26px;
+    color: var(--ink);
+    opacity: 0.85;
+  }
+  .status.error{ color: var(--withdraw); }
+  .status.success{ color: var(--deposit); }
+
+  .ledger-head{
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+  }
+
+  .ledger-head h2{
+    font-family:'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .ledger-head .counts{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(29,43,58,0.55);
+  }
+
+  table{
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead th{
+    text-align: left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(29,43,58,0.5);
+    padding: 0 0 8px 0;
+    border-bottom: 1px solid var(--ink);
+  }
+  thead th.num{ text-align: right; }
+
+  tbody tr{
+    border-bottom: 1px dashed var(--paper-line);
+  }
+  tbody tr:last-child{ border-bottom: none; }
+
+  tbody td{
+    padding: 10px 0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 13.5px;
+  }
+  tbody td.num{
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tag{
+    display:inline-block;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+  .tag.deposit{ background: rgba(47,107,79,0.14); color: var(--deposit); }
+  .tag.withdraw{ background: rgba(139,58,58,0.14); color: var(--withdraw); }
+
+  .empty{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: rgba(29,43,58,0.5);
+    padding: 18px 0;
+    text-align: center;
+  }
+
+  footer{
+    margin-top: 26px;
+    padding-top: 16px;
+    border-top: 1px solid var(--paper-line);
+    display:flex;
+    justify-content: space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: rgba(29,43,58,0.55);
+  }
+
+  @media (max-width: 480px){
+    .book-inner{ padding: 34px 20px 30px 44px; }
+    h1{ font-size: 26px; }
+    .balance-panel .amount{ font-size: 30px; }
+    .actions{ grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; }
+  }

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ledger — Bank Account</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="book">
+  <div class="book-inner">
+    <header>
+      <div>
+        <p class="eyebrow">Passbook · Savings</p>
+        <h1>Your Ledger</h1>
+      </div>
+      <div class="acct-no">ACCT NO. 0042-118</div>
+    </header>
+
+    <div class="balance-panel">
+      <span class="label">Current Balance</span>
+      <span class="amount" id="balanceAmount">$0.00</span>
+    </div>
+
+    <div class="actions">
+      <div class="field">
+        <label for="depositInput">Deposit</label>
+        <div class="row">
+          <input type="number" id="depositInput" placeholder="0.00" min="0" step="0.01">
+          <button class="btn-deposit" id="depositBtn">Deposit</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="withdrawInput">Withdraw</label>
+        <div class="row">
+          <input type="number" id="withdrawInput" placeholder="0.00" min="0" step="0.01">
+          <button class="btn-withdraw" id="withdrawBtn">Withdraw</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="status" id="statusMsg"></p>
+
+    <div class="ledger-head">
+      <h2>Entries</h2>
+      <span class="counts" id="counts">0 entries</span>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Type</th>
+          <th class="num">Amount</th>
+          <th class="num">Balance</th>
+        </tr>
+      </thead>
+      <tbody id="ledgerBody">
+      </tbody>
+    </table>
+    <div class="empty" id="emptyState">No entries yet — make a deposit to open the ledger.</div>
+
+    <footer>
+      <span id="depositTotal">Deposits: —</span>
+      <span id="withdrawTotal">Withdrawals: —</span>
+    </footer>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
