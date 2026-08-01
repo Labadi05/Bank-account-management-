@@ -3,10 +3,10 @@
 A small `BankAccount` class (deposit, withdraw, balance, transaction history) with a passbook-styled web UI on top of it.
 
 ## Live demo
-Open `index.html` in a browser, or enable **GitHub Pages** for this repo (Settings → Pages → deploy from `main` branch, `/root`) and it'll be live at:
+Open `index.html` in a browser, or enable **GitHub Pages** for this repo (Settings → Pages → deploy from `main` branch, `/root`) 
 
 ```
-https://<Labadi05>.github.io/<bank-account management-system>/
+
 ```
 
 ## Files
